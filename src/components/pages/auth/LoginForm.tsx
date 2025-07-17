@@ -15,6 +15,9 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { AuthForm, AuthSchema } from "@/lib/schemas/auth.schema";
+import { CLoginResult } from "@/lib/types/client/client-response";
+import { MainRes } from "@/lib/types/api-response";
+import { handleFormError } from "@/lib/helpers/client/client-helper";
 import { doAlert } from "@/lib/helpers/alert";
 
 const LoginForm = () => {
@@ -29,13 +32,28 @@ const LoginForm = () => {
   });
 
   async function onSubmit(values: AuthForm) {
-    doAlert(1, "...");
-
     try {
       setIsLoading(true);
-      console.log(values);
-    } catch (error) {
-      console.error(error);
+
+      const doLogin = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+
+      const { success, code, message, result }: MainRes<CLoginResult> =
+        await doLogin.json();
+
+      if (!success) {
+        handleFormError<AuthForm>(code, result, message, form);
+        return;
+      }
+
+      console.log(result, code);
+    } catch {
+      doAlert(0, "Terjadi Kesalahan ! Silahkan Hubungi Administrator !");
     } finally {
       setIsLoading(false);
     }
