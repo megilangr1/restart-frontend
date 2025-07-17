@@ -41,32 +41,12 @@ const navMain: NavList[] = [
     role: ["MeGGi", "Administrator"],
     items: [
       {
+        title: "Akun Admin",
+        url: "/master-data/daftar-admin",
+      },
+      {
         title: "Jabatan",
-        url: "/admin-desa/daftar-jabatan",
-      },
-      {
-        title: "Anggota",
-        url: "/admin-desa/daftar-anggota",
-      },
-      {
-        title: "BPD dan Ketua Lembaga",
-        url: "/admin-desa/daftar-bpd-dan-lembaga-desa",
-      },
-      {
-        title: "Dusun",
-        url: "/admin-desa/daftar-dusun",
-      },
-      {
-        title: "Rukun Warga (RW)",
-        url: "/admin-desa/daftar-rw",
-      },
-      {
-        title: "Rukun Tetangga (RT)",
-        url: "/admin-desa/daftar-rt",
-      },
-      {
-        title: "Penduduk",
-        url: "/admin-desa/daftar-penduduk",
+        url: "/master-data/daftar-jabatan",
       },
     ],
   },

@@ -78,10 +78,16 @@ export function NavUser({
             <DropdownMenuSeparator />
 
             <DropdownMenuItem asChild>
-              <Button type="button" size={"sm"} className="w-full">
-                <LogOut className="shrink-0 size-4" />
-                Logout
-              </Button>
+              <Link href={"/"}>
+                <Button
+                  type="button"
+                  size={"sm"}
+                  className="w-full cursor-pointer"
+                >
+                  <LogOut className="shrink-0 size-4" />
+                  Logout
+                </Button>
+              </Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
