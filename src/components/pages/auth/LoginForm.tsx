@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   Form,
@@ -19,8 +19,15 @@ import { CLoginResult } from "@/lib/types/client/client-response";
 import { MainRes } from "@/lib/types/api-response";
 import { handleFormError } from "@/lib/helpers/client/client-helper";
 import { doAlert } from "@/lib/helpers/alert";
+import useAuth from "@/lib/stores/auth-store";
 
 const LoginForm = () => {
+  const { setSession, user } = useAuth();
+
+  useEffect(() => {
+    console.log("🔥 User berubah:", user);
+  }, [user]);
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const form = useForm<AuthForm>({
@@ -50,8 +57,9 @@ const LoginForm = () => {
         handleFormError<AuthForm>(code, result, message, form);
         return;
       }
-
-      console.log(result, code);
+      setSession(result.user);
+      doAlert(1, message);
+      return;
     } catch {
       doAlert(0, "Terjadi Kesalahan ! Silahkan Hubungi Administrator !");
     } finally {

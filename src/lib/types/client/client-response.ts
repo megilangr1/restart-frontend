@@ -1,11 +1,5 @@
+import { User } from "@/lib/schemas/master-data/user.schema";
+
 export type CLoginResult = {
-  user: {
-    id: string;
-    name: string;
-    email: string;
-    roles: string[];
-    isActive: boolean;
-    createdAt: string;
-    updatedAt: string;
-  };
+  user: User;
 };

@@ -1,13 +1,7 @@
+import { User } from "@/lib/schemas/master-data/user.schema";
+
 export type SLoginResult = {
-  user: {
-    id: string;
-    name: string;
-    email: string;
-    roles: string[];
-    isActive: boolean;
-    createdAt: string;
-    updatedAt: string;
-  };
+  user: User;
   access_token: string;
   refresh_token: string;
 };
